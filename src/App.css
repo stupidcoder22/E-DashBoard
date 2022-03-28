@@ -63,6 +63,8 @@
   width: 150px;
   border: none;
   cursor: pointer;
+  color: wheat;
+  background-color: #282c34;
 }
 
 @keyframes App-logo-spin {
