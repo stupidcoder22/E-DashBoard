@@ -2,6 +2,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
 import Footer from "./Components/Footer";
 import Nav from "./Components/Nav";
+import SignupPage from "./Components/SignupPage";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
           <Route path="/update" element={<h1>update</h1>} />
           <Route path="/logout" element={<h1>logout</h1>} />
           <Route path="/profile" element={<h1>profile</h1>} />
+          <Route path="/signup" element={<SignupPage />} />
         </Routes>
         <h1>E-DashBoard hai</h1>
       </BrowserRouter>

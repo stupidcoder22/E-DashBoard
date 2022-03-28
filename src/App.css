@@ -46,6 +46,24 @@
   background: skyblue;
   text-align: center;
 }
+.register {
+  margin-left: 30%;
+}
+.inputbox {
+  display: block;
+  margin: 25px;
+  padding: 7px;
+  width: 300px;
+  border: 1px solid black;
+}
+
+.btn {
+  margin: 25px;
+  padding: 10px;
+  width: 150px;
+  border: none;
+  cursor: pointer;
+}
 
 @keyframes App-logo-spin {
   from {
