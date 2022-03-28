@@ -1,6 +1,7 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
 import Footer from "./Components/Footer";
+import Login from "./Components/Login";
 import Nav from "./Components/Nav";
 import Privatecomp from "./Components/Privatecomp";
 import SignupPage from "./Components/SignupPage";
@@ -19,8 +20,8 @@ function App() {
             <Route path="/profile" element={<h1>profile</h1>} />
           </Route>
           <Route path="/signup" element={<SignupPage />} />
+          <Route path="/login" element={<Login />} />
         </Routes>
-        <h1>E-DashBoard hai</h1>
       </BrowserRouter>
       <Footer />
     </div>

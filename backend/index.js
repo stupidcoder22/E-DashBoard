@@ -22,11 +22,13 @@ app.post("/login", async (req, res) => {
     const databaseuser = await User.findOne(userdata).select("-password");
     if (databaseuser) {
       res.send(databaseuser);
-    } else {
-      res.send("no data found");
+    } 
+    else {
+      console.log("first else");
+      res.send({ result: "no data found" });
     }
   } else {
-    res.send("no data found");
+    res.send({ result: "no data found" });
   }
 });
 

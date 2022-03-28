@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 import swal from "sweetalert";
 
-const SignupPage = () => {
-  const [name, setname] = useState("");
+const Login = () => {
   const [email, setemail] = useState("");
   const [password, setpassword] = useState("");
   const navigate = useNavigate();
@@ -16,34 +15,29 @@ const SignupPage = () => {
   }, []);
 
   const handlesubmit = async () => {
-    console.log(name, email, password);
-    const result = await fetch("http://localhost:1000/register", {
+    console.log(email, password);
+    let data = await fetch("http://localhost:1000/login", {
       method: "post",
-      body: JSON.stringify({ name, email, password }),
+      body: JSON.stringify({ email, password }),
       headers: {
         "Content-Type": "application/json",
       },
     });
-    const data = await result.json();
-    console.log(data);
+    data = await data.json();
+    console.log("your data is", data);
 
-    if (data) {
+    if (data.name) {
       localStorage.setItem("user", JSON.stringify(data));
+      console.log("front if");
       navigate("/");
-      swal("Security", `You have successfully Registered ${name}`, "success");
+      swal("Welcome Back", `You have successfully logged in`, "success");
+    } else {
+      swal("Oops!", "Please enter correct details", "error");
     }
   };
-
   return (
     <div className="register">
-      <h1>Register</h1>;
-      <input
-        className="inputbox"
-        type="text"
-        value={name}
-        placeholder="Enter your name"
-        onChange={(e) => setname(e.target.value)}
-      />
+      <h1>Login</h1>;
       <input
         className="inputbox"
         type="email"
@@ -59,10 +53,10 @@ const SignupPage = () => {
         onChange={(e) => setpassword(e.target.value)}
       />
       <button type="button" className="btn" onClick={handlesubmit}>
-        Signup
+        Login
       </button>
     </div>
   );
 };
 
-export default SignupPage;
+export default Login;

@@ -36,6 +36,8 @@ const Nav = () => {
             <Link to="/signup">Signup</Link>
           )}
         </li>
+
+        <li>{!auth ? <Link to="/login">Login</Link> : null}</li>
       </ul>
     </div>
   );
