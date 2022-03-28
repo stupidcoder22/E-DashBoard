@@ -1,5 +1,6 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
+import swal from "sweetalert";
 
 const Nav = () => {
   const auth = localStorage.getItem("user");
@@ -7,6 +8,7 @@ const Nav = () => {
   const logout = () => {
     localStorage.clear();
     navigate("/signup");
+    swal("Security", "You have logged out", "success");
   };
 
   return (

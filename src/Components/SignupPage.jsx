@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import swal from "sweetalert";
 
 const SignupPage = () => {
   const [name, setname] = useState("");
@@ -29,6 +30,7 @@ const SignupPage = () => {
     if (data) {
       localStorage.setItem("user", JSON.stringify(data));
       navigate("/");
+      swal("Security", "You have successfully logged in", "success");
     }
   };
 
