@@ -5,6 +5,7 @@ import Footer from "./Components/Footer";
 import Login from "./Components/Login";
 import Nav from "./Components/Nav";
 import Privatecomp from "./Components/Privatecomp";
+import Productlist from "./Components/Productlist";
 import SignupPage from "./Components/SignupPage";
 
 function App() {
@@ -14,7 +15,7 @@ function App() {
         <Nav />
         <Routes>
           <Route element={<Privatecomp />}>
-            <Route path="/" element={<h1>Product</h1>} />
+            <Route path="/" element={<Productlist />} />
             <Route path="/add" element={<AddProduct />} />
             <Route path="/update" element={<h1>update</h1>} />
             <Route path="/logout" element={<h1>logout</h1>} />

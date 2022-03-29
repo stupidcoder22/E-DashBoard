@@ -44,7 +44,7 @@ const AddProduct = () => {
     console.log(result);
     if (result.name) {
       swal(
-        `Congrats ${user.name}😍`,
+        `Congrats ${user.name}🤗`,
         `You have added Product successfully`,
         "success"
       );
@@ -58,7 +58,7 @@ const AddProduct = () => {
   };
   return (
     <div className="register">
-      <h1>AddProduct</h1>;
+      <h1>AddProduct</h1>
       <input
         type="text"
         placeholder="Enter Product name"

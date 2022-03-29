@@ -40,8 +40,8 @@ app.post("/add-product", async (req, res) => {
   res.send(data);
 });
 
-//product-list api
-app.get("/product-list", async (req, res) => {
+//products api
+app.get("/products", async (req, res) => {
   let product = await Product.find();
   res.send(product);
 });
