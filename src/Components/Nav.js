@@ -8,37 +8,47 @@ const Nav = () => {
   const logout = () => {
     localStorage.clear();
     navigate("/signup");
-    swal("Security", "You have logged out", "success");
+    swal("Byee 😪", "You have logged out", "success");
   };
 
   return (
     <div>
-      <ul className="nav-ul">
-        <li>
-          <Link to="/">Product</Link>
-        </li>
-        <li>
-          <Link to="/add">Add Product</Link>
-        </li>
-        <li>
-          <Link to="/update">Update Product</Link>
-        </li>
-        <li></li>
-        <li>
-          <Link to="/profile">Profile</Link>
-        </li>
-        <li>
-          {auth ? (
+      <img
+        src="https://cdn-icons-png.flaticon.com/512/3684/3684620.png"
+        alt=""
+        className="logoimg"
+      />
+      {auth ? (
+        <ul className="nav-ul">
+          <li>
+            <Link to="/">Product</Link>
+          </li>
+          <li>
+            <Link to="/add">Add Product</Link>
+          </li>
+          <li>
+            <Link to="/update">Update Product</Link>
+          </li>
+          <li></li>
+          <li>
+            <Link to="/profile">Profile</Link>
+          </li>
+          <li>
             <Link to="/signup" onClick={logout}>
-              Logout
+              Logout ({JSON.parse(auth).name})
             </Link>
-          ) : (
+          </li>
+        </ul>
+      ) : (
+        <ul className="nav-ul right">
+          <li>
             <Link to="/signup">Signup</Link>
-          )}
-        </li>
-
-        <li>{!auth ? <Link to="/login">Login</Link> : null}</li>
-      </ul>
+          </li>
+          <li>
+            <Link to="/login">Login</Link>
+          </li>
+        </ul>
+      )}
     </div>
   );
 };

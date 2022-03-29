@@ -16,7 +16,6 @@ const SignupPage = () => {
   }, []);
 
   const handlesubmit = async () => {
-    console.log(name, email, password);
     const result = await fetch("http://localhost:1000/register", {
       method: "post",
       body: JSON.stringify({ name, email, password }),
@@ -25,12 +24,14 @@ const SignupPage = () => {
       },
     });
     const data = await result.json();
-    console.log(data);
-
     if (data) {
       localStorage.setItem("user", JSON.stringify(data));
       navigate("/");
-      swal("Security", `You have successfully Registered ${name}`, "success");
+      swal(
+        `Welcome ${data.name}😍`,
+        `You have successfully Registered`,
+        "success"
+      );
     }
   };
 

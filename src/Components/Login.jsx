@@ -15,7 +15,6 @@ const Login = () => {
   }, []);
 
   const handlesubmit = async () => {
-    console.log(email, password);
     let data = await fetch("http://localhost:1000/login", {
       method: "post",
       body: JSON.stringify({ email, password }),
@@ -24,11 +23,9 @@ const Login = () => {
       },
     });
     data = await data.json();
-    console.log("your data is", data);
 
     if (data.name) {
       localStorage.setItem("user", JSON.stringify(data));
-      console.log("front if");
       navigate("/");
       swal("Welcome Back", `You have successfully logged in`, "success");
     } else {

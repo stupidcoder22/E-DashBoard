@@ -49,12 +49,24 @@
 .register {
   margin-left: 30%;
 }
+
+.right {
+  text-align: right;
+}
 .inputbox {
   display: block;
   margin: 25px;
   padding: 7px;
   width: 300px;
   border: 1px solid black;
+}
+
+.logoimg {
+  width: 37px;
+  float: left;
+  border-radius: 50%;
+  margin-top: 7px;
+  margin-left: 20px;
 }
 
 .btn {
