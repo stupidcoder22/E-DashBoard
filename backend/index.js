@@ -33,10 +33,17 @@ app.post("/login", async (req, res) => {
   }
 });
 
+// add-product api
 app.post("/add-product", async (req, res) => {
   let product = await new Product(req.body);
   let data = await product.save();
   res.send(data);
+});
+
+//product-list api
+app.get("/product-list", async (req, res) => {
+  let product = await Product.find();
+  res.send(product);
 });
 
 app.listen(1000);
