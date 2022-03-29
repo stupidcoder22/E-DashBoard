@@ -52,4 +52,14 @@ app.delete("/delete/:id", async (req, res) => {
   res.send(deleteuser);
 });
 
+//single product data get api
+app.get("/product/:id", async (req, res) => {
+  let result = await Product.findOne({ _id: req.params.id });
+  if (result) {
+    res.send(result);
+  } else {
+    res.send({ error: "data not found" });
+  }
+});
+
 app.listen(1000);
