@@ -14,8 +14,23 @@ const AddProduct = () => {
     setproductdetail({ ...productdetail, [name]: value });
   };
 
-  const addProduct = () => {
-    console.log(productdetail);
+  const addProduct = async () => {
+    const user = JSON.parse(localStorage.getItem("user"));
+    const response = await fetch("http://localhost:1000/add-product", {
+      method: "post",
+      body: JSON.stringify({
+        name: productdetail.name,
+        price: productdetail.price,
+        category: productdetail.category,
+        userId: user._id,
+        company: productdetail.company,
+      }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    const result = await response.json();
+    console.log(result);
   };
   return (
     <div className="register">
