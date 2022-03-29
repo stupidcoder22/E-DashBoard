@@ -79,6 +79,14 @@
   background-color: #282c34;
 }
 
+.search {
+  width: 400px;
+  margin: 20px;
+  height: 40px;
+  border: 1px solid skyblue;
+  padding-left: 20px;
+}
+
 .product-list {
   text-align: center;
   margin-top: 50px;
