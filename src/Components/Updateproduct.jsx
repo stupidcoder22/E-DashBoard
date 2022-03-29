@@ -1,4 +1,6 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { Navigate, useNavigate, useParams } from "react-router-dom";
+import swal from "sweetalert";
 
 const Updateproduct = () => {
   const [productdetail, setproductdetail] = useState({
@@ -7,6 +9,8 @@ const Updateproduct = () => {
     category: "",
     company: "",
   });
+  const params = useParams();
+  const navigate = useNavigate();
 
   const texthandle = (e) => {
     let name = e.target.name;
@@ -14,13 +18,48 @@ const Updateproduct = () => {
     setproductdetail({ ...productdetail, [name]: value });
   };
 
-  const addProduct = () => {
-    console.log(
-      productdetail.name,
-      productdetail.category,
-      productdetail.company,
-      productdetail.price
-    );
+  const addProduct = async () => {
+    let result = await fetch(`http://localhost:1000/update/${params.id}`, {
+      method: "put",
+      body: JSON.stringify({
+        name: productdetail.name,
+        price: productdetail.price,
+        category: productdetail.category,
+        company: productdetail.company,
+      }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    result = await result.json();
+    console.log(result);
+    if (result.acknowledged) {
+      swal(`Congrats🤗`, `You have updated your data successfully`, "success");
+      navigate("/");
+    }
+  };
+
+  useEffect(() => {
+    prefilldataApi();
+  }, []);
+
+  const prefilldataApi = async () => {
+    let result = await fetch(`http://localhost:1000/product/${params.id}`, {
+      method: "get",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    result = await result.json();
+    console.log(result);
+    if (result.name) {
+      setproductdetail({
+        name: result.name,
+        category: result.category,
+        company: result.company,
+        price: result.price,
+      });
+    }
   };
   return (
     <div className="register">

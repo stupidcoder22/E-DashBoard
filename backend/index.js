@@ -62,4 +62,17 @@ app.get("/product/:id", async (req, res) => {
   }
 });
 
+//update product api
+app.put("/update/:id", async (req, res) => {
+  let result = await Product.updateOne(
+    { _id: req.params.id },
+    { $set: req.body }
+  );
+  if (result) {
+    res.send(result);
+  } else {
+    res.send({ error: "there is some problem" });
+  }
+});
+
 app.listen(1000);
