@@ -1,7 +1,6 @@
 import React, { useState } from "react";
-import swal from "sweetalert";
 
-const AddProduct = () => {
+const Updateproduct = () => {
   const [productdetail, setproductdetail] = useState({
     name: "",
     price: "",
@@ -15,50 +14,17 @@ const AddProduct = () => {
     setproductdetail({ ...productdetail, [name]: value });
   };
 
-  const addProduct = async () => {
-    if (
-      !productdetail.name ||
-      !productdetail.price ||
-      !productdetail.category ||
-      !productdetail.company
-    ) {
-      swal("Oops☹", "Please enter correct details", "error");
-
-      return false;
-    }
-    const user = JSON.parse(localStorage.getItem("user"));
-    const response = await fetch("http://localhost:1000/add-product", {
-      method: "post",
-      body: JSON.stringify({
-        name: productdetail.name,
-        price: productdetail.price,
-        category: productdetail.category,
-        userId: user._id,
-        company: productdetail.company,
-      }),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
-    const result = await response.json();
-    console.log(result);
-    if (result.name) {
-      swal(
-        `Congrats ${user.name}🤗`,
-        `You have added Product successfully`,
-        "success"
-      );
-      setproductdetail({
-        name: "",
-        price: "",
-        category: "",
-        company: "",
-      });
-    }
+  const addProduct = () => {
+    console.log(
+      productdetail.name,
+      productdetail.category,
+      productdetail.company,
+      productdetail.price
+    );
   };
   return (
     <div className="register">
-      <h1>Add Product</h1>
+      <h1>Update Product</h1>
       <input
         type="text"
         placeholder="Enter Product name"
@@ -92,10 +58,10 @@ const AddProduct = () => {
         value={productdetail.company}
       />
       <button className="btn" onClick={addProduct}>
-        Add Product
+        update Product
       </button>
     </div>
   );
 };
 
-export default AddProduct;
+export default Updateproduct;
