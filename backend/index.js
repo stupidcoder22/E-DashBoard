@@ -3,10 +3,12 @@ const app = express();
 const cors = require("cors");
 require("./db/config");
 const User = require("./db/User");
+const Product = require("./db/Product");
 
 app.use(express.json());
 app.use(cors());
 
+//register api
 app.post("/register", async (req, res) => {
   let user = await new User(req.body);
   let data = await user.save();
@@ -15,6 +17,7 @@ app.post("/register", async (req, res) => {
   res.send(data);
 });
 
+//login api
 app.post("/login", async (req, res) => {
   let userdata = req.body;
 
@@ -23,12 +26,17 @@ app.post("/login", async (req, res) => {
     if (databaseuser) {
       res.send(databaseuser);
     } else {
-      console.log("first else");
       res.send({ result: "no data found" });
     }
   } else {
     res.send({ result: "no data found" });
   }
+});
+
+app.post("/add-product", async (req, res) => {
+  let product = await new Product(req.body);
+  let data = await product.save();
+  res.send(data);
 });
 
 app.listen(1000);
