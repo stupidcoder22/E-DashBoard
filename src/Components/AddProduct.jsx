@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import swal from "sweetalert";
 
 const AddProduct = () => {
   const [productdetail, setproductdetail] = useState({
@@ -15,6 +16,16 @@ const AddProduct = () => {
   };
 
   const addProduct = async () => {
+    if (
+      !productdetail.name ||
+      !productdetail.price ||
+      !productdetail.category ||
+      !productdetail.company
+    ) {
+      swal("Oops☹", "Please enter correct details", "error");
+
+      return false;
+    }
     const user = JSON.parse(localStorage.getItem("user"));
     const response = await fetch("http://localhost:1000/add-product", {
       method: "post",
@@ -31,6 +42,19 @@ const AddProduct = () => {
     });
     const result = await response.json();
     console.log(result);
+    if (result.name) {
+      swal(
+        `Congrats ${user.name}😍`,
+        `You have added Product successfully`,
+        "success"
+      );
+      setproductdetail({
+        name: "",
+        price: "",
+        category: "",
+        company: "",
+      });
+    }
   };
   return (
     <div className="register">
